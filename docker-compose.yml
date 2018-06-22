@@ -2,7 +2,7 @@ version: '3'
 
 services:
   db:
-    image: mysql:5.7
+    image: mariadb:latest
     volumes:
       - db_data:/var/lib/mysql
     restart: always
@@ -17,13 +17,20 @@ services:
       - db
     image: wordpress:latest
     ports:
-      - "8700:80"
+      - "8765:80"
     restart: always
     environment:
       WORDPRESS_DB_HOST: db:3306
       WORDPRESS_DB_USER: wordpress
       WORDPRESS_DB_PASSWORD: wordpress
-    volumes:
-      - ../hap-wiki:/var/www/html/wp-content/themes/hap-wiki
+    # volumes:
+      # - custom-theme:/var/www/html/wp-content/themes/custom-theme
+
+  adminer:
+    image: tristanremy/material-adminer
+    restart: always
+    ports:
+      - 8080:8080
+
 volumes:
   db_data:
