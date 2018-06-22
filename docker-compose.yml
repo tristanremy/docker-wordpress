@@ -27,7 +27,7 @@ services:
       # - custom-theme:/var/www/html/wp-content/themes/custom-theme
 
   adminer:
-    image: tristanremy/material-adminer
+    image: tristanremy/material-adminer:latest
     restart: always
     ports:
       - 8080:8080
